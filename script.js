@@ -1,11 +1,10 @@
-// Data Structure for Study Sets
+
 const studySets = [
     {
         id: "carbon-cycle-test-prep",
         title: "Carbon Cycle Test Prep",
         description: "Complete study guide covering leaf stomata, plant adaptations, chemical equations, carbon sinks, paleoclimatology, and positive feedback loops.",
         cards: [
-            // Stomata & Plant Adaptations
             { 
                 term: "Stomata Purpose & Mechanism", 
                 definition: "Stomata are microscopic pores on leaves for gas exchange (taking in CO2, releasing O2). When guard cells swell with water, stomata open; when dehydrated, guard cells shrink and stomata close to prevent water loss." 
@@ -23,7 +22,6 @@ const studySets = [
                 definition: "Most plants have stomata on lower leaf surfaces; corn has them on both sides; water lilies have them only on upper leaf surfaces." 
             },
 
-            // Chemistry & Equations
             { 
                 term: "Atomic Structure of Carbon", 
                 definition: "6th element with 6 protons, 6 neutrons, and 6 electrons (2 in inner shell, 4 in valence shell). It needs 4 electrons to become stable, allowing it to bond with up to 4 atoms to create complex molecules like DNA, fats, and proteins." 
@@ -49,7 +47,6 @@ const studySets = [
                 definition: "Reactants: C6H12O6 + 6O2\nProducts: 6CO2 + 6H2O + ATP" 
             },
 
-            // Earth Systems & Carbon Cycle
             { 
                 term: "Atmospheric Carbon Gasses", 
                 definition: "Carbon exists mainly as methane (CH4) and carbon dioxide (CO2). Both are greenhouse gases that trap heat in the atmosphere." 
@@ -63,7 +60,6 @@ const studySets = [
                 definition: "Carbon dioxide dissolves into ocean waters via diffusion. Oceans absorb about half of human CO2 emissions, but increased absorption raises ocean acidity and weakens shells." 
             },
 
-            // Climate History & Feedback Loops
             { 
                 term: "Pollen Cores & Sporopollenin", 
                 definition: "Paleoclimatologists drill sediment cylinders from lake beds. Pollen survives for millions of years due to a durable outer coating made of sporopollenin." 
@@ -84,7 +80,6 @@ const studySets = [
 let currentSetIndex = 0;
 let currentCardIndex = 0;
 
-// Learn Mode State
 let learnQueue = [];
 let correctCount = 0;
 let currentQuestion = null;
@@ -94,7 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("study-modal");
     const closeBtn = document.getElementById("close-modal");
     
-    // Elements for Flashcards
     const flashcard = document.getElementById("flashcard");
     const cardFront = document.getElementById("card-front");
     const cardBack = document.getElementById("card-back");
@@ -104,16 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.getElementById("next-btn");
     const flashcardControls = document.querySelector(".modal-controls");
 
-    // Dynamic Learn Mode Container Setup
     const modalContent = document.querySelector(".modal-content");
     
-    // Remove existing mode selectors if re-initializing
     const existingSelector = document.querySelector(".mode-selector");
     if (existingSelector) existingSelector.remove();
     const existingLearn = document.getElementById("learn-container");
     if (existingLearn) existingLearn.remove();
 
-    // Inject Mode Selector Switcher
     const modeSwitchHtml = `
         <div class="mode-selector">
             <button id="mode-flashcards" class="mode-btn active">Flashcards</button>
@@ -141,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const learnScore = document.getElementById("learn-score");
     const learnRemaining = document.getElementById("learn-remaining");
 
-    // Render Cards in Main Grid
     function renderPracticeCards() {
         if (!grid) return;
         grid.innerHTML = "";
@@ -161,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Open Fullscreen Study Mode
     function openStudyMode(setIndex) {
         currentSetIndex = setIndex;
         currentCardIndex = 0;
@@ -175,13 +164,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Mode Switcher Logic
     function switchMode(mode) {
         if (mode === "flashcards") {
             btnFlashcardsMode.classList.add("active");
             btnLearnMode.classList.remove("active");
             
-            // Show Flashcards, Hide Learn
             flashcard.style.display = "block";
             flashcardControls.style.display = "flex";
             learnContainer.style.display = "none";
@@ -191,7 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
             btnLearnMode.classList.add("active");
             btnFlashcardsMode.classList.remove("active");
             
-            // Hide Flashcards, Show Learn
             flashcard.style.display = "none";
             flashcardControls.style.display = "none";
             learnContainer.style.display = "flex";
@@ -203,7 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btnFlashcardsMode.addEventListener("click", () => switchMode("flashcards"));
     btnLearnMode.addEventListener("click", () => switchMode("learn"));
 
-    // --- FLASHCARD LOGIC ---
     function updateCardContent() {
         const currentCards = studySets[currentSetIndex].cards;
         const activeCard = currentCards[currentCardIndex];
@@ -240,7 +225,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- LEARN MODE LOGIC ---
     function initLearnMode() {
         const allCards = studySets[currentSetIndex].cards;
         learnQueue = [...allCards];
@@ -308,7 +292,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     learnNextBtn.addEventListener("click", nextLearnQuestion);
 
-    // Close Fullscreen Study Mode
     function closeStudyMode() {
         modal.classList.add("hidden");
         flashcard.classList.remove("flipped");

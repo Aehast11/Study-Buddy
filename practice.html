@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Study Buddy - Practice</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <a class="title" href="index.html">Study Buddy</a>
+            <div class="nav">
+                <a class="nav-button" href="practice.html">Practice</a>
+                <a class="nav-button" href="notes.html">Notes</a>
+                <a class="nav-button" href="resources.html">Class Resources</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="practice-header">
+                <h2>Practice & Study Sets</h2>
+                <p>Hover over a card and click to enter full-screen study mode.</p>
+            </div>
+
+
+            <div id="practice-grid" class="practice-grid">
+            </div>
+        </main>
+
+
+        <div id="study-modal" class="study-modal hidden">
+            <button id="close-modal" class="close-btn">&times;</button>
+            
+            <div class="modal-content">
+                <h3 id="modal-set-title">Set Title</h3>
+                
+                <div id="flashcard" class="flashcard">
+                    <div class="flashcard-inner">
+                        <div id="card-front" class="card-face card-front">Term</div>
+                        <div id="card-back" class="card-face card-back">Definition</div>
+                    </div>
+                </div>
+
+                <div class="modal-controls">
+                    <button id="prev-btn" class="study-nav-btn">Previous</button>
+                    <span id="card-counter">1 / 1</span>
+                    <button id="next-btn" class="study-nav-btn">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
